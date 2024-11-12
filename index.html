@@ -1,3 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greeting Widget</title>
+  <!-- Link to Google Fonts for Lora font -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* Background settings */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 15vh;
+      background-color: transparent;
+      font-family: 'Lora', serif;
+      color: #b1b396; /* Soft olive color for the text */
+      margin: 0;
+      padding-left: 20px; /* Space from the left edge */
+    }
+
+    /* Greeting styling */
+    .greeting {
+      font-size: 3em;
+      font-weight: 700;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Greeting -->
+  <div class="greeting" id="greeting">Good Morning</div>
+
+  <script>
+    function updateGreeting() {
+      const now = new Date();
+      const hours = now.getHours();
+
+      // Set greeting based on time of day
+      let greetingText;
+      if (hours >= 6 && hours < 12) {
+        greetingText = "Good Morning";
+      } else if (hours >= 12 && hours < 18) {
+        greetingText = "Good Afternoon";
+      } else if (hours >= 18 && hours < 22) {
+        greetingText = "Good Evening";
+      } else {
         greetingText = "Good Night";
       }
       document.getElementById('greeting').textContent = greetingText;

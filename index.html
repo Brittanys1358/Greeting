@@ -4,33 +4,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Greeting Widget</title>
-  <!-- Link to Google Fonts for Lora font -->
-  <link href=https://fonts.google.com/specimen/Yeseva+One rel="stylesheet">
+  <!-- Link to Google Fonts for Yeseva One font -->
+  <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
   <style>
-    /* Background settings */
+    /* Background and font settings */
     body {
+      display: flex;
+      flex-direction: column;
       align-items: center;
       height: 100vh;
       background-color: transparent;
-      font-family: 'Yeseva One', italic;
-      color: #b1b396; /* Soft olive color for the text */
-      margin-top: 20px;
-      padding-left: 20px; /* Space from the left edge */
+      font-family: 'Yeseva One', serif;
+      color: #b1b396; /* Default color */
+      margin: 0;
+      padding-top: 20px;
+    }
+
+    /* Form styling */
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 1em;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"], select {
+      padding: 5px;
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-size: 1em;
+      font-weight: bold;
+      color: white;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
     }
 
     /* Greeting styling */
     .greeting {
-      font-size: 2em;font-weight: Bold
-       ;
+      font-size: 2em;
+      font-weight: bold;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    /* Dropdown color preview circles */
+    .color-option {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      margin-right: 8px;
+      vertical-align: middle;
     }
   </style>
 </head>
 <body>
-  <!-- Greeting -->
+
+  <!-- Form for user input -->
+  <div class="form-container">
+    <label for="nameInput">Enter your name:</label>
+    <input type="text" id="nameInput" placeholder="Your name here">
+
+    <label for="colorPicker">Choose a text color:</label>
+    <select id="colorPicker">
+      <option value="#b1b396"><span class="color-option" style="background-color: #b1b396;"></span> Olive</option>
+      <option value="#d9b0ad"><span class="color-option" style="background-color: #d9b0ad;"></span> Soft Pink</option>
+      <option value="#e8dcb3"><span class="color-option" style="background-color: #e8dcb3;"></span> Pale Gold</option>
+      <option value="#c1d1de"><span class="color-option" style="background-color: #c1d1de;"></span> Light Blue</option>
+      <option value="#bda595"><span class="color-option" style="background-color: #bda595;"></span> Warm Beige</option>
+    </select>
+
+    <button onclick="updateWidget()">Save</button>
+  </div>
+
+  <!-- Display the personalized greeting -->
   <div class="greeting" id="greeting">Good Morning</div>
 
   <script>
+    function updateWidget() {
+      // Get the user's name and color input
+      const name = document.getElementById("nameInput").value || "Guest";
+      const color = document.getElementById("colorPicker").value;
+      
+      // Update the greeting text and color
+      const greeting = document.getElementById("greeting");
+      greeting.textContent = `⊹ Good Morning, ${name}! ⊹`;
+      greeting.style.color = color;
+    }
+
     function updateGreeting() {
       const now = new Date();
       const hours = now.getHours();
@@ -38,20 +115,24 @@
       // Set greeting based on time of day
       let greetingText;
       if (hours >= 6 && hours < 12) {
-        greetingText = "⊹ Good Morning! ⊹";
+        greetingText = "⊹ Good Morning";
       } else if (hours >= 12 && hours < 18) {
-        greetingText = "⊹ Good Afternoon! ⊹";
+        greetingText = "⊹ Good Afternoon";
       } else if (hours >= 18 && hours < 22) {
-        greetingText = "⊹ Good Evening! ⊹";
+        greetingText = "⊹ Good Evening";
       } else {
-        greetingText = "⊹ Good Night! ⊹";
+        greetingText = "⊹ Good Night";
       }
-      document.getElementById('greeting').textContent = greetingText;
+
+      // Update greeting text based on time of day, including name
+      const name = document.getElementById("nameInput").value || "Guest";
+      document.getElementById("greeting").textContent = `${greetingText}, ${name}! ⊹`;
     }
 
     // Update greeting immediately and set an interval to check every hour
     updateGreeting();
     setInterval(updateGreeting, 3600000);
   </script>
+
 </body>
 </html>

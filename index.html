@@ -45,3 +45,60 @@
     .preview span {
       font-weight: serif;
     }
+       .generate-link {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+    /* Custom link color and hover effect */
+    #generateLink {
+      color: #b3b0af; /* Change this to your desired color */
+      text-decoration: none;
+    }
+
+    #generateLink:hover {
+      color: #8a8480; /* Darker color on hover */
+      text-decoration: underline; /* Optional: Adds an underline on hover */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Greeting Widget Setup</h1>
+
+    <!-- Name input -->
+    <label for="nameInput"></label>
+    <input type="text" id="nameInput" placeholder="Your Name">
+
+    <!-- Color selection -->
+     <label for="colorSelect">Choose a color:</label>
+    <select id="colorSelect">
+      <option value="#b1b396" style="background-color: #b1b396;">Olive</option>
+      <option value="#d9b0ad" style="background-color: #d9b0ad;">Blush</option>
+      <option value="#e8dcb3" style="background-color: #e8dcb3;">Gold</option>
+      <option value="#c1d1de" style="background-color: #c1d1de;">Blue</option>
+      <option value="#bda595" style="background-color: #bda595;">Taupe</option>
+    </select>
+        function updatePreview() {
+      const name = nameInput.value || "Your Name";
+      const color = colorSelect.value;
+
+      namePreview.textContent = name;
+      preview.style.color = color;
+    }
+
+    // Event listeners for live preview updates
+    nameInput.addEventListener('input', updatePreview);
+    colorSelect.addEventListener('change', updatePreview);
+
+    // Update the link with the customized URL
+    generateLink.addEventListener('click', () => {
+      const name = encodeURIComponent(nameInput.value || "Your Name");
+      const color = encodeURIComponent(colorSelect.value);
+      generateLink.href = `greeting.html?name=${name}&color=${color}`;
+    });
+
+    // Initial preview setup
+    updatePreview();
+  </script>
+</body>
+</html>
+

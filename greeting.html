@@ -10,12 +10,13 @@
     body {
       margin: 0;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start; /* Align to the left */
       align-items: center;
       background-color: transparent;
       height: 100vh;
       font-family: 'Yeseva One', serif;
       color: #b1b396;
+      padding-left: 1em; /* Add padding for some spacing from the edge */
     }
 
     .container {
@@ -23,12 +24,12 @@
       align-items: center;
       padding: 0.2em;
       background-color: transparent;
-      text-align: center;
+      text-align: left;
       white-space: nowrap; /* Prevent line breaks */
     }
 
     .greeting {
-      font-size: 5vh; /* Use vh for better control in compact view */
+      font-size: 32px; /* Fixed font size for better readability */
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
   </style>

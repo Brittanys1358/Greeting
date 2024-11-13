@@ -3,34 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compact Greeting Widget</title>
+  <title>Responsive Greeting Widget</title>
   <!-- Link to Google Fonts for Yeseva One font -->
   <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       display: flex;
-      justify-content: flex-start; /* Align to the left */
+      justify-content: flex-start; /* Align text to the left */
       align-items: center;
       background-color: transparent;
       height: 100vh;
       font-family: 'Yeseva One', serif;
       color: #b1b396;
-      padding-left: 1em; /* Add padding for some spacing from the edge */
+      padding: 0 1rem; /* Left padding for spacing */
+      overflow: hidden; /* Prevents overflow on mobile */
     }
 
     .container {
       display: flex;
       align-items: center;
-      padding: 0.2em;
       background-color: transparent;
       text-align: left;
       white-space: nowrap; /* Prevent line breaks */
     }
 
     .greeting {
-      font-size: 32px; /* Fixed font size for better readability */
+      font-size: 2rem; /* Responsive font size */
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Adjust font size for smaller screens */
+    @media (max-width: 600px) {
+      .greeting {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>

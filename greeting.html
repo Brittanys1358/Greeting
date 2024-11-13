@@ -3,70 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clock Widget</title>
+  <title>Greeting Widget</title>
+  <!-- Link to Google Fonts for Yeseva One font -->
   <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
   <style>
-    /* Set rectangular shape with reduced font scaling */
     body {
-      font-family: 'Yeseva One', sans-serif;
-      background-color: transparent;
-      margin: 0;
-      padding: 0;
-      display: flex;
+      
       align-items: center;
-      justify-content: center;
-      width: 100vw;
-      height: 50vh; /* Keep rectangular shape */
-      overflow: hidden;
+      
+      height: auto;
+      background-color: transparent;
+      font-family: 'Yeseva One', serif;
+      color: #b1b396;
+      margin: 0;
     }
-
-    /* Clock styling */
-    .clock {
-      font-size: 6vw; /* Reduced font size for smaller text */
-      color: #333;
+    .greeting {
+      font-size: 2em;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      line-height: 1;
-    }
-
-    /* Styling for AM/PM text */
-    .ampm {
-      font-size: 0.25em; /* Smaller size for AM/PM */
-      opacity: 0.6;
     }
   </style>
 </head>
 <body>
-  <div class="clock" id="clockDisplay">12:00 <span class="ampm">PM</span></div>
+  <div class="greeting" id="greeting">Hello!</div>
 
   <script>
-    function getUrlParameter(name) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(name);
+    function updateGreeting() {
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get('name') || 'Guest';
+      const color = params.get('color') || '#b1b396';
+
+      // Set greeting text and color
+      const hours = new Date().getHours();
+      let greetingText = "Hello";
+
+      if (hours >= 6 && hours < 12) {
+        greetingText = `⊹ Good Morning, ${name}! ⊹`;
+      } else if (hours >= 12 && hours < 18) {
+        greetingText = `⊹ Good Afternoon, ${name}! ⊹`;
+      } else if (hours >= 18 && hours < 22) {
+        greetingText = `⊹ Good Evening, ${name}! ⊹`;
+      } else {
+        greetingText = `⊹ Good Night, ${name}! ⊹`;
+      }
+
+      document.getElementById('greeting').textContent = greetingText;
+      document.getElementById('greeting').style.color = color;
     }
 
-    // Set color from URL parameter if provided
-    const color = getUrlParameter('color');
-    if (color) {
-      document.getElementById('clockDisplay').style.color = color;
-    }
-
-    // Update clock every second
-    function updateClock() {
-      const now = new Date();
-      let hours = now.getHours();
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const ampm = hours >= 12 ? 'PM' : 'AM';
-
-      hours = hours % 12;
-      hours = hours ? hours : 12;
-
-      const timeText = `${hours}:${minutes} <span class="ampm">${ampm}</span>`;
-      document.getElementById('clockDisplay').innerHTML = timeText;
-    }
-
-    setInterval(updateClock, 1000);
-    updateClock();
+    updateGreeting();
   </script>
 </body>
 </html>

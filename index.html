@@ -43,22 +43,22 @@
     }
 
     select {
-      appearance: none; /* Remove default styling */
+      appearance: none;
       padding: 10px;
       font-size: 1em;
       font-family: 'Yeseva One', sans-serif;
-      background-color: #f5f3f2; /* Match background color */
+      background-color: #f5f3f2;
       border: 1px solid #b3b0af;
       border-radius: 5px;
       color: #333;
       cursor: pointer;
-      width: 150px; /* Width of dropdown */
+      width: 150px;
       text-align: center;
     }
 
     select:focus {
       outline: none;
-      border-color: #8a8480; /* Highlight on focus */
+      border-color: #8a8480;
     }
 
     option {
@@ -72,10 +72,6 @@
       font-size: 2em;
       color: #b1b396;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    }
-
-    .preview span {
-      font-weight: serif;
     }
 
     /* Clock preview styling */
@@ -121,7 +117,7 @@
     </select>
 
     <!-- Greeting Preview -->
-    <div class="preview" id="greetingPreview">⊹ Good Morning, <span id="namePreview">Your Name</span>! ⊹</div>
+    <div class="preview" id="greetingPreview">⊹ Good Morning! ⊹</div>
 
     <!-- Clock Preview -->
     <div class="clock-preview" id="clockPreview">12:00 PM</div>
@@ -137,14 +133,13 @@
     const nameInput = document.getElementById('nameInput');
     const colorSelect = document.getElementById('colorSelect');
     const greetingPreview = document.getElementById('greetingPreview');
-    const namePreview = document.getElementById('namePreview');
     const clockPreview = document.getElementById('clockPreview');
     const generateGreetingLink = document.getElementById('generateGreetingLink');
     const generateClockLink = document.getElementById('generateClockLink');
 
-    // Update previews
+    // Update greeting preview
     function updatePreview() {
-      const name = nameInput.value;
+      const name = nameInput.value.trim();
       const color = colorSelect.value;
 
       // Determine the greeting based on the current hour
@@ -163,10 +158,11 @@
       }
 
       // Update the greeting preview text and color
-      greetingPreview.innerHTML = `⊹ ${greetingText}${name ? `, <span id="namePreview">${name}</span>` : ""}! ⊹`;
-      greetingPreview.style.color = color;
+      greetingPreview.innerHTML = name
+        ? `⊹ ${greetingText}, ${name}! ⊹`
+        : `⊹ ${greetingText}! ⊹`;
 
-      // Update clock color
+      greetingPreview.style.color = color;
       clockPreview.style.color = color;
     }
 
@@ -177,9 +173,7 @@
       const minutes = String(now.getMinutes()).padStart(2, '0');
       const ampm = hours >= 12 ? 'PM' : 'AM';
 
-      // Convert to 12-hour format
-      hours = hours % 12;
-      hours = hours ? hours : 12; // '0' should be '12' for midnight
+      hours = hours % 12 || 12; // Convert to 12-hour format
 
       clockPreview.textContent = `${hours}:${minutes} ${ampm}`;
     }
@@ -187,11 +181,11 @@
     // Event listeners for live preview updates
     nameInput.addEventListener('input', updatePreview);
     colorSelect.addEventListener('change', updatePreview);
-    setInterval(updateClock, 1000); // Update the clock preview every second
+    setInterval(updateClock, 1000); // Update clock every second
 
-    // Update the links with the customized URLs
+    // Update the links with customized URLs
     generateGreetingLink.addEventListener('click', () => {
-      const name = encodeURIComponent(nameInput.value || "Your Name");
+      const name = encodeURIComponent(nameInput.value.trim());
       const color = encodeURIComponent(colorSelect.value);
       generateGreetingLink.href = `greeting.html?name=${name}&color=${color}`;
     });
@@ -201,9 +195,9 @@
       generateClockLink.href = `clock.html?color=${color}`;
     });
 
-    // Initial preview setup
+    // Initialize previews
     updatePreview();
-    updateClock(); // Initialize clock immediately
+    updateClock();
   </script>
 </body>
 </html>

@@ -115,22 +115,12 @@
     const generateGreetingLink = document.getElementById('generateGreetingLink');
     const generateClockLink = document.getElementById('generateClockLink');
 
-    // Function to get the time-based greeting
-    function getTimeBasedGreeting() {
-      const hours = new Date().getHours();
-      if (hours < 12) return "Good Morning";
-      if (hours < 18) return "Good Afternoon";
-      return "Good Evening";
-    }
-
     // Update previews
     function updatePreview() {
       const name = nameInput.value || "Your Name";
       const color = colorSelect.value;
 
       // Update greeting
-      const greeting = getTimeBasedGreeting();
-      greetingPreview.textContent = `⊹ ${greeting}, `;
       namePreview.textContent = name;
       greetingPreview.style.color = color;
 
@@ -150,7 +140,7 @@
       hours = hours ? hours : 12; // '0' should be '12' for midnight
 
       // Create the HTML structure with AM/PM in a span tag
-      clockPreview.innerHTML = `${hours}:${minutes} <span class="ampm">${ampm}</span>`;
+      clockPreview.innerHTML = ${hours}:${minutes} <span class="ampm">${ampm}</span>;
     }
 
     // Event listeners for live preview updates
@@ -162,12 +152,12 @@
     generateGreetingLink.addEventListener('click', () => {
       const name = encodeURIComponent(nameInput.value || "Your Name");
       const color = encodeURIComponent(colorSelect.value);
-      generateGreetingLink.href = `greeting.html?name=${name}&color=${color}`;
+      generateGreetingLink.href = greeting.html?name=${name}&color=${color};
     });
 
     generateClockLink.addEventListener('click', () => {
       const color = encodeURIComponent(colorSelect.value);
-      generateClockLink.href = `clock.html?color=${color}`;
+      generateClockLink.href = clock.html?color=${color};
     });
 
     // Initial preview setup

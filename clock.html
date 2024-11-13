@@ -6,7 +6,7 @@
   <title>Clock Widget</title>
   <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
   <style>
-    /* Ensure the widget maintains a rectangular shape */
+    /* Set rectangular shape with reduced font scaling */
     body {
       font-family: 'Yeseva One', sans-serif;
       background-color: transparent;
@@ -16,13 +16,13 @@
       align-items: center;
       justify-content: center;
       width: 100vw;
-      height: 50vh; /* Adjust height for a rectangular shape */
+      height: 50vh; /* Keep rectangular shape */
       overflow: hidden;
     }
 
     /* Clock styling */
     .clock {
-      font-size: 10vw; /* Responsive font size */
+      font-size: 6vw; /* Reduced font size for smaller text */
       color: #333;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
       text-align: center;
@@ -31,7 +31,7 @@
 
     /* Styling for AM/PM text */
     .ampm {
-      font-size: 0.3em;
+      font-size: 0.25em; /* Smaller size for AM/PM */
       opacity: 0.6;
     }
   </style>

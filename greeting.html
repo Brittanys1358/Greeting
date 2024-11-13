@@ -43,33 +43,38 @@
 <body>
   <div class="container">
     <div class="greeting" id="greeting">⊹ Hello! ⊹</div>
-    <div class="name" id="name">Guest</div>
   </div>
 
   <script>
     function updateGreeting() {
       const params = new URLSearchParams(window.location.search);
-      const name = params.get('name') || 'Guest';
+      const name = params.get('name') || '';
       const color = params.get('color') || '#b1b396';
 
-      // Set greeting text and color
+      // Determine greeting based on time of day
       const hours = new Date().getHours();
-      let greetingText = "⊹ Hello! ⊹";
+      let greetingText = "⊹ Hello";
 
       if (hours >= 6 && hours < 12) {
-        greetingText = `⊹ Good Morning! ⊹`;
+        greetingText = "⊹ Good Morning";
       } else if (hours >= 12 && hours < 18) {
-        greetingText = `⊹ Good Afternoon! ⊹`;
+        greetingText = "⊹ Good Afternoon";
       } else if (hours >= 18 && hours < 22) {
-        greetingText = `⊹ Good Evening! ⊹`;
+        greetingText = "⊹ Good Evening";
       } else {
-        greetingText = `⊹ Good Night! ⊹`;
+        greetingText = "⊹ Good Night";
       }
 
+      // Add name with punctuation if provided, otherwise just greeting
+      if (name) {
+        greetingText += `, ${name}! ⊹`;
+      } else {
+        greetingText += `! ⊹`;
+      }
+
+      // Apply text and color
       document.getElementById('greeting').textContent = greetingText;
-      document.getElementById('name').textContent = name;
       document.getElementById('greeting').style.color = color;
-      document.getElementById('name').style.color = color;
     }
 
     updateGreeting();

@@ -36,29 +36,29 @@
   <div class="greeting" id="greeting">Hello!</div>
 
   <script>
-    function updateGreeting() {
-      const params = new URLSearchParams(window.location.search);
-      const name = params.get('name') || 'Guest';
-      const color = params.get('color') || '#b1b396';
+  function updateGreeting() {
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+    const color = params.get('color') || '#b1b396';
 
-      const hours = new Date().getHours();
-      let greetingText = "Hello";
+    const hours = new Date().getHours();
+    let greetingText = "Hello";
 
-      if (hours >= 6 && hours < 12) {
-        greetingText = `⊹ Good Morning, ${name}! ⊹`;
-      } else if (hours >= 12 && hours < 18) {
-        greetingText = `⊹ Good Afternoon, ${name}! ⊹`;
-      } else if (hours >= 18 && hours < 22) {
-        greetingText = `⊹ Good Evening, ${name}! ⊹`;
-      } else {
-        greetingText = `⊹ Good Night, ${name}! ⊹`;
-      }
-
-      document.getElementById('greeting').textContent = greetingText;
-      document.getElementById('greeting').style.color = color;
+    if (hours >= 6 && hours < 12) {
+      greetingText = `⊹ Good Morning${name ? `, ${name}` : ""}! ⊹`;
+    } else if (hours >= 12 && hours < 18) {
+      greetingText = `⊹ Good Afternoon${name ? `, ${name}` : ""}! ⊹`;
+    } else if (hours >= 18 && hours < 22) {
+      greetingText = `⊹ Good Evening${name ? `, ${name}` : ""}! ⊹`;
+    } else {
+      greetingText = `⊹ Good Night${name ? `, ${name}` : ""}! ⊹`;
     }
 
-    updateGreeting();
-  </script>
+    document.getElementById('greeting').textContent = greetingText;
+    document.getElementById('greeting').style.color = color;
+  }
+
+  updateGreeting();
+</script>
 </body>
 </html>

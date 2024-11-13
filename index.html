@@ -115,12 +115,22 @@
     const generateGreetingLink = document.getElementById('generateGreetingLink');
     const generateClockLink = document.getElementById('generateClockLink');
 
+    // Function to get the time-based greeting
+    function getTimeBasedGreeting() {
+      const hours = new Date().getHours();
+      if (hours < 12) return "Good Morning";
+      if (hours < 18) return "Good Afternoon";
+      return "Good Evening";
+    }
+
     // Update previews
     function updatePreview() {
       const name = nameInput.value || "Your Name";
       const color = colorSelect.value;
 
       // Update greeting
+      const greeting = getTimeBasedGreeting();
+      greetingPreview.textContent = `⊹ ${greeting}, `;
       namePreview.textContent = name;
       greetingPreview.style.color = color;
 

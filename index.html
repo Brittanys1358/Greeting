@@ -48,9 +48,14 @@
 
     /* Clock preview styling */
     .clock-preview {
-      font-size: 3em;
+      font-size: 2.5em;
       margin-top: 10px;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .ampm {
+      font-size: 0.7em; /* Make AM/PM smaller */
+      opacity: 0.6; /* Make AM/PM less opaque */
     }
 
     .generate-link {
@@ -92,7 +97,7 @@
     <div class="preview" id="greetingPreview">⊹ Good Morning, <span id="namePreview">Your Name</span>! ⊹</div>
 
     <!-- Clock Preview -->
-    <div class="clock-preview" id="clockPreview">12:00 PM</div>
+    <div class="clock-preview" id="clockPreview">12:00 <span class="ampm">PM</span></div>
 
     <!-- Link generation for Greeting and Clock -->
     <div class="generate-link">
@@ -134,7 +139,8 @@
       hours = hours % 12;
       hours = hours ? hours : 12; // '0' should be '12' for midnight
 
-      clockPreview.textContent = `${hours}:${minutes} ${ampm}`;
+      // Create the HTML structure with AM/PM in a span tag
+      clockPreview.innerHTML = `${hours}:${minutes} <span class="ampm">${ampm}</span>`;
     }
 
     // Event listeners for live preview updates

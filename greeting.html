@@ -6,6 +6,7 @@
   <title>Greeting Widget</title>
   <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
   <style>
+    /* Body styling for full viewport fit */
     body {
       display: flex;
       align-items: center;
@@ -15,11 +16,14 @@
       background-color: transparent;
       font-family: 'Yeseva One', serif;
       color: #b1b396;
-      height: 100vh; /* Ensure full viewport height */
+      width: 100vw;
+      height: 50vh; /* Set height to half viewport to create a rectangular shape */
       overflow: hidden;
     }
+
+    /* Greeting text styling */
     .greeting {
-      font-size: 10vw;
+      font-size: 8vw; /* Adjust font size to fit within a shorter rectangle */
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
       line-height: 1;
       margin: 0;
@@ -36,7 +40,6 @@
       const name = params.get('name') || 'Guest';
       const color = params.get('color') || '#b1b396';
 
-      // Set greeting text and color
       const hours = new Date().getHours();
       let greetingText = "Hello";
 

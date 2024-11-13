@@ -4,33 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Responsive Greeting Widget</title>
+  <!-- Link to Google Fonts for Yeseva One font -->
   <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
+      display: flex;
+      justify-content: flex-start; /* Align text to the left */
+      align-items: center;
       background-color: transparent;
+      height: 100vh;
       font-family: 'Yeseva One', serif;
       color: #b1b396;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      overflow: hidden;
-      width: 100%;
-      height: 100vh;
+      
+      overflow: hidden; /* Prevents overflow on mobile */
     }
 
     .container {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      background-color: transparent;
       text-align: left;
-      padding-left: 1rem; /* Space from the left edge */
-      white-space: nowrap;
+      white-space: nowrap; /* Prevent line breaks */
     }
 
     .greeting {
-      font-size: 2.5vw; /* Responsive font size */
+      font-size: 1.5rem; /* Responsive font size */
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
 

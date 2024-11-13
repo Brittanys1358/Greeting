@@ -4,24 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Greeting Widget</title>
-  <!-- Link to Google Fonts for Yeseva One font -->
   <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
   <style>
     body {
       display: flex;
       align-items: center;
-      justify-content: left;
-      height: 100%;
-      width: 100%;
+      justify-content: center;
       margin: 0;
+      padding: 0;
       background-color: transparent;
       font-family: 'Yeseva One', serif;
       color: #b1b396;
+      height: 100vh; /* Ensure full viewport height */
+      overflow: hidden;
     }
     .greeting {
       font-size: 10vw;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-      text-align: center;
+      line-height: 1;
+      margin: 0;
+      padding: 0;
     }
   </style>
 </head>

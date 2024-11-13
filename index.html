@@ -35,14 +35,12 @@
       font-family: 'Yeseva One', sans-serif;
       background-color: #f5f3f2;
       border: 1px solid  #b3b0af;
-      
     }
     select, input[type="text"]:focus {
-outline: none;
+      outline: none;
       border-color: #8a8480;
-caret-color: #333
-
-}
+      caret-color: #333;
+    }
 
     select {
       appearance: none; /* Remove default styling */
@@ -146,7 +144,7 @@ caret-color: #333
 
     // Update previews
     function updatePreview() {
-      const name = nameInput.value || "Your Name";
+      const name = nameInput.value;
       const color = colorSelect.value;
 
       // Determine the greeting based on the current hour
@@ -165,7 +163,7 @@ caret-color: #333
       }
 
       // Update the greeting preview text and color
-      greetingPreview.innerHTML = `⊹ ${greetingText}, <span id="namePreview">${name}</span>! ⊹`;
+      greetingPreview.innerHTML = `⊹ ${greetingText}${name ? `, <span id="namePreview">${name}</span>` : ""}! ⊹`;
       greetingPreview.style.color = color;
 
       // Update clock color

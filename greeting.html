@@ -6,59 +6,74 @@
   <title>Greeting Widget</title>
   <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
   <style>
-    /* Body styling for full viewport fit */
     body {
+      font-family: 'Yeseva One', sans-serif;
       display: flex;
       align-items: center;
-      justify-content: left;
+      justify-content: center;
+      height: 100vh;
       margin: 0;
-      padding: 0;
-      background-color: transparent;
-      font-family: 'Yeseva One', serif;
-      color: #b1b396;
-      width: 100vw;
-      height: 50vh; /* Set height to half viewport to create a rectangular shape */
-      overflow: hidden;
+      background-color: #f5f3f2;
+      color: #333;
     }
 
-    /* Greeting text styling */
     .greeting {
-      font-size: 5vw; /* Reduced font size for a more compact fit */
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-      line-height: 1;
-      margin: 0;
-      padding: 0;
       text-align: center;
+      font-size: 2em;
+      color: #b1b396;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Custom styles for greeting color */
+    .greeting span {
+      font-weight: serif;
     }
   </style>
 </head>
 <body>
-  <div class="greeting" id="greeting">Hello!</div>
+
+  <div class="greeting" id="greetingText">
+    <!-- Greeting will be displayed here -->
+  </div>
 
   <script>
-  function updateGreeting() {
-    const params = new URLSearchParams(window.location.search);
-    const name = params.get('name');
-    const color = params.get('color') || '#b1b396';
-
-    const hours = new Date().getHours();
-    let greetingText = "Hello";
-
-    if (hours >= 6 && hours < 12) {
-      greetingText = `⊹ Good Morning${name ? `, ${name}` : ""}! ⊹`;
-    } else if (hours >= 12 && hours < 18) {
-      greetingText = `⊹ Good Afternoon${name ? `, ${name}` : ""}! ⊹`;
-    } else if (hours >= 18 && hours < 22) {
-      greetingText = `⊹ Good Evening${name ? `, ${name}` : ""}! ⊹`;
-    } else {
-      greetingText = `⊹ Good Night${name ? `, ${name}` : ""}! ⊹`;
+    // Function to get URL parameters
+    function getUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        name: params.get('name') || 'Your Name', // Default name if not provided
+        color: params.get('color') || '#b1b396' // Default color if not provided
+      };
     }
 
-    document.getElementById('greeting').textContent = greetingText;
-    document.getElementById('greeting').style.color = color;
-  }
+    // Function to update the greeting text and color
+    function updateGreeting() {
+      const { name, color } = getUrlParams();
 
-  updateGreeting();
-</script>
+      // Determine the greeting based on the current time
+      const now = new Date();
+      const hour = now.getHours();
+      let greetingText;
+
+      if (hour >= 5 && hour < 12) {
+        greetingText = "Good Morning";
+      } else if (hour >= 12 && hour < 17) {
+        greetingText = "Good Afternoon";
+      } else if (hour >= 17 && hour < 21) {
+        greetingText = "Good Evening";
+      } else {
+        greetingText = "Good Night";
+      }
+
+      // Update the greeting text with the name and color
+      const greetingElement = document.getElementById('greetingText');
+      greetingElement.innerHTML = `⊹ ${greetingText}, <span>${name}</span>! ⊹`;
+      greetingElement.style.color = color;
+    }
+
+    // Run the update on page load
+    window.onload = updateGreeting;
+  </script>
+
 </body>
 </html>
